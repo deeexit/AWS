@@ -2,7 +2,11 @@
 <classpath>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="/home/andrej/Development/workspace/com.bs.vp.SplashScreen/libs/GraphView-3.0.jar"/>
+=======
+	<classpathentry kind="lib" path="libs/GraphView-2.5.jar"/>
+>>>>>>> 0e21050b477ac77987aafa65549f11ef34f180db
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
