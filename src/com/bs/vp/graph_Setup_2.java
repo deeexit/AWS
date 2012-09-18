@@ -37,6 +37,8 @@ public class graph_Setup_2 extends Activity {
 	
 	// mamica je na luni :)
 	
+	// fsipanc pa na tleh!!
+	
 	Integer month2 = dobPicker2.getMonth();
 	Integer day2 = dobPicker2.getDayOfMonth();
 	Integer year2 = dobPicker2.getYear();
