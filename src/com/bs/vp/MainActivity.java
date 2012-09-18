@@ -15,7 +15,6 @@ import com.bs.vp.XMLParser;
 
 
 
-import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
@@ -52,27 +51,11 @@ public class MainActivity extends Activity {
         //Toast toast = Toast.makeText(getApplicationContext(),"Hi Sucker! Stisni refresh loool ;)", Toast.LENGTH_SHORT);
         //toast.show();
         
-        ProgressBar spin11 = (ProgressBar) findViewById(R.id.progressBar1);
         // Define TextViews
-        if (isOnline() == true) {
-    		spin11.setVisibility(View.VISIBLE); 
-    		refreshData();
-    		}
-    		else if (isOnline() == false) { Toast lol = Toast.makeText(getApplicationContext(), "Ni povezave!", Toast.LENGTH_LONG); lol.show(); }
+        
       
     }
 	
-	
-	public boolean isOnline() {
-	    ConnectivityManager cm =
-	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-	    if (cm.getActiveNetworkInfo() != null && 
-	       cm.getActiveNetworkInfo().isConnectedOrConnecting()) {
-	    return true; }
-	    else { return false; }
-	}
-
-
 	
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -107,17 +90,13 @@ public class MainActivity extends Activity {
 		padavine_view.setText("");
 		
 		ProgressBar spin11 = (ProgressBar) findViewById(R.id.progressBar1);
-		
-		if (isOnline() == true) {
-		spin11.setVisibility(View.VISIBLE); 
+		spin11.setVisibility(View.VISIBLE);    
 		refreshData();
-		}
-		else if (isOnline() == false) { Toast lol = Toast.makeText(getApplicationContext(), "Ni povezave!", Toast.LENGTH_LONG); lol.show(); }
 		//spin11.setVisibility(View.INVISIBLE);
 	        return true;
 	        
 		case (R.id.item2):
-			Intent intent = new Intent(MainActivity.this, graph_Setup.class);
+			Intent intent = new Intent(MainActivity.this, Graphs.class);
 			startActivity(intent);
 			return true;
 
@@ -134,7 +113,6 @@ public class MainActivity extends Activity {
 		
 		
 		new DownloadXMLTask().execute(new String[] { "WTF!!"});
-		
 	  //spin1.setVisibility(View.INVISIBLE);
 		
 	}
