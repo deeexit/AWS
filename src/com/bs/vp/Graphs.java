@@ -21,6 +21,8 @@ import com.jjoe64.graphview.GraphView.GraphViewData;
 
 public class Graphs extends Activity {
     
+	public GraphViewSeries graph2;
+	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.graph_view);
@@ -45,13 +47,13 @@ public class Graphs extends Activity {
         layout.addView(graphView);
         
         // test 2 
-        GraphViewSeries graph2 = new GraphViewSeries(new GraphViewData[] {
-        						 new GraphViewData (1,1),
-        						 new GraphViewData (2,2),
-        						 new GraphViewData (3,3),
-        						 new GraphViewData (4,10),
-        						 new GraphViewData (5,25)
-        });
+        //GraphViewSeries graph2 = new GraphViewSeries(new GraphViewData[] {
+        //						 new GraphViewData (1,1),
+        //						 new GraphViewData (2,2),
+        //						 new GraphViewData (3,3),
+        //						 new GraphViewData (4,10),
+        //						 new GraphViewData (5,25)
+        //});
     	
       
         
