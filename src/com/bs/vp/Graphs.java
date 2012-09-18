@@ -1,27 +1,24 @@
 package com.bs.vp;
 
 import android.app.Activity;
-import android.app.ListActivity;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Toast;
-//import bs.bami.control.R;
+import com.bs.vp.graph_Setup_2;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.GraphViewSeries.GraphViewStyle;
 import com.jjoe64.graphview.LineGraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
+//import bs.bami.control.R;
 
 public class Graphs extends Activity {
     
-	public GraphViewSeries graph2;
+	public graph_Setup_2 graphx;
 	
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +36,7 @@ public class Graphs extends Activity {
               this // context
               , "GraphViewDemo" // heading
         );
-        graphView.addSeries(exampleSeries); // data
+        graphView.addSeries(graphx.graph2); // data
         graphView.setViewPort(1, 2);
         graphView.setScalable(true);
         graphView.setScrollable(true);

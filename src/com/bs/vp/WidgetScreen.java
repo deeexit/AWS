@@ -1,22 +1,16 @@
 package com.bs.vp;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
-
-
-
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.os.Bundle;
-import android.widget.ListView;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 public class WidgetScreen extends AppWidgetProvider {
 	

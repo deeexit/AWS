@@ -1,41 +1,25 @@
 package com.bs.vp;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import com.bs.vp.R;
-//import com.pxr.tutorial.xmltest.Main;
-//import com.pxr.tutorial.xmltest.XMLParser;
-import com.bs.vp.XMLParser;
-
-
-
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Activity;
-import android.app.ListActivity;
-import android.content.Context;
-import android.content.Intent;
-//import android.sax.Element;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.AdapterView.OnItemClickListener;
+//import com.pxr.tutorial.xmltest.Main;
+//import com.pxr.tutorial.xmltest.XMLParser;
+//import android.sax.Element;
 
 
 public class MainActivity extends Activity {
