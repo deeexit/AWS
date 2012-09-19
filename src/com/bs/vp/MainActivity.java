@@ -48,7 +48,7 @@ public class MainActivity extends Activity {
         //toast.show();
         
         // Define TextViews
-        
+        refreshData();
       
     }
 	

@@ -82,11 +82,10 @@ public final class R {
         public static final int datePicker1=0x7f070013;
         public static final int datePicker2=0x7f070014;
         public static final int graph1=0x7f070016;
-        public static final int graph2=0x7f070017;
         public static final int imageView1=0x7f070000;
-        public static final int item1=0x7f070019;
-        public static final int item2=0x7f07001a;
-        public static final int menu_settings=0x7f070018;
+        public static final int item1=0x7f070018;
+        public static final int item2=0x7f070019;
+        public static final int menu_settings=0x7f070017;
         public static final int progressBar1=0x7f070008;
         public static final int textView1=0x7f070012;
         public static final int textView2=0x7f070015;

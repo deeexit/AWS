@@ -1,5 +1,10 @@
 package com.bs.vp;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.LineGraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
+
 import android.app.Activity;
 
 import android.graphics.Color;
@@ -10,11 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 import com.bs.vp.graph_Setup_2;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.GraphViewSeries.GraphViewStyle;
-import com.jjoe64.graphview.LineGraphView;
+
+
 //import bs.bami.control.R;
 
 
@@ -27,29 +29,49 @@ import com.jjoe64.graphview.LineGraphView;
 
 public class Graphs extends Activity {
     
-	public graph_Setup_2 graphx;
-    public void onCreate(Bundle savedInstanceState) {
+//	public graph_Setup_2 graphx;
+	//public GraphViewSeries graphx;
+    public graph_Setup_2 jao;
+	
+	// @SuppressWarnings("null")
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.graph_view);
         
+        
+        Toast hihi = Toast.makeText(getApplicationContext(), "hihi", Toast.LENGTH_LONG);
+        hihi.show();
      // init example series data
-        GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
-                  new GraphViewData(1, 2.0d)
-                  , new GraphViewData(2, 1.5d)
-                  , new GraphViewData(3, 2.5d)
-                  , new GraphViewData(4, 1.0d)
-        });
-
+       // GraphViewSeries exampleSeries = new GraphViewSeries(new GraphViewData[] {
+        //          new GraphViewData(1, 2.0d)
+        //          , new GraphViewData(2, 1.5d)
+        //          , new GraphViewData(3, 2.5d)
+        //          , new GraphViewData(4, 1.0d)
+        //});
+       // GraphViewSeries graphx = new GraphViewSeries (new GraphViewData[] { new GraphViewData(1,1) });
+        int num = 160;
+        GraphViewData[] data = new GraphViewData[num];
+       
+        double v=0;
+        for (int x = 1; x<5; x++) {
+        	v += 0.2;
+        	//data[x] = new GraphViewData(x, Math.sin(v));
+        	data[x] = new GraphViewData(Integer.getInteger(jao.arr1.getItem(x).toString()),Integer.getInteger(jao.arr1.getItem(x).toString()));
+        }
+    
+        
         GraphView graphView = new LineGraphView(
               this // context
               , "GraphViewDemo" // heading
         );
-        graphView.addSeries(graphx.graph2); // data
-        graphView.setViewPort(1, 2);
+        graphView.addSeries(new GraphViewSeries(data)); // data
+        graphView.setViewPort(2, 40);
         graphView.setScalable(true);
         graphView.setScrollable(true);
         LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
         layout.addView(graphView);
+     
+       
         
         // test 2 
         GraphViewSeries graph2 = new GraphViewSeries(new GraphViewData[] {
@@ -63,22 +85,7 @@ public class Graphs extends Activity {
       
         
     	
-        GraphView graphView2 = new LineGraphView (this, "Graf 2");
-        graphView2.addSeries(graph2);
-        graphView2.setViewPort(1, 1);
-        graphView2.setScalable(true);
-        LinearLayout layout2 = (LinearLayout) findViewById(R.id.graph2);
-        layout2.addView(graphView2);
-        // Random curve to the first graph
-        int num = 150;
-    	double v=0;
-    	GraphViewData[] data = new GraphViewData[num];
-    	for (int i=0; i<num; i++) {
-    		v += 0.2;
-    		data[i] = new GraphViewData(i, Math.sin(Math.random()*v));
-    		}
-    	GraphViewSeries series1 = new GraphViewSeries ("Random curve",new GraphViewStyle(Color.rgb(90, 250, 00), 3), data);
-        graphView.addSeries(series1);
+        
         
     }
 

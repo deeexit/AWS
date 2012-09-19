@@ -13,11 +13,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-import com.jjoe64.graphview.GraphViewSeries;
-import com.jjoe64.graphview.GraphViewSeries.GraphViewStyle;
-import com.jjoe64.graphview.LineGraphView;
+
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,13 +21,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.Toast;
+import com.bs.vp.Graphs;
 
 public class graph_Setup_2 extends Activity {
 	
 	private DatePicker dobPicker;
 	private DatePicker dobPicker2;
-	public GraphViewSeries graph2;
+	//public Graphs graph2;
+	public Graphs graphx;
+	//public StringBuilder hihi;
+	public ArrayAdapter arr1;
+	public String[] datax = null;
+	public String[] datay = null;
+	
 	
 	public void onCreate (Bundle savedinstance) {
 		super.onCreate(savedinstance);
@@ -40,7 +44,7 @@ public class graph_Setup_2 extends Activity {
 	
 	
 	public void getData(View view) {
-	
+		//ArrayAdapter<String> arr1 = new ArrayAdapter<String> (this,android.R.layout.simple_list_item_1);
 	//Toast wtf = Toast.makeText(getApplicationContext(), "WTF!!!", Toast.LENGTH_LONG);
 	//wtf.show();
 	dobPicker = (DatePicker) findViewById (R.id.datePicker1);
@@ -81,32 +85,49 @@ public class graph_Setup_2 extends Activity {
 		HttpResponse response = client.execute(get);
 		String result = EntityUtils.toString(response.getEntity());
 		
-		Toast jee = Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG);
-		jee.show();
+		//Toast jee = Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG);
+		//jee.show();
 		
-		ArrayList strings = new ArrayList();
-		String[] mString = (String[]) strings.toArray(new String[strings.size()]);
+		
+		//String[] mString = (String[]) strings.toArray(new String[strings.size()]);
 		
 		String[] separated =  result.split("\n");
+		
+		
+		
+		//ListView list1 = new ListView (this);
+		//list1.setAdapter(arr1);
+		//setContentView(list1);
+		//list1.showContextMenu();
+		
 		int kuga = separated.length;
 		StringBuilder hihi = new StringBuilder();
 		String[] test; 
+		
+		
+		// Create graph
+		
+		
+		
 		for (int x = 1; x < kuga; x++) {
 			test = separated[x].split("\\|");
 			//Toast mhm = Toast.makeText(getApplicationContext(), String.valueOf(test.length), Toast.LENGTH_LONG);
 			//mhm.show();
 			hihi.append(test[0] + " -- " + test[1]+ " ");
-		}
-		
+			arr1.add(test[0]);
+			arr1.add(test[1]);
+			//datax[x] = test[0];
+			//datay[x] = test[1];
 	//	  graph2 = new GraphViewSeries (new GraphViewData [] {
 	//		new GraphViewData (Integer.parseInt(separated[0]),Integer.parseInt(separated[1])),
 	//		new GraphViewData (Integer.parseInt(separated[2]),Integer.parseInt(separated[3])),
 	//		new GraphViewData (Integer.parseInt(separated[4]), Integer.parseInt(separated[5]))
 	//	});
-		Toast grr = Toast.makeText(getApplicationContext(),String.valueOf(kuga) + " " + hihi, Toast.LENGTH_LONG);
-		grr.show();
+		//Toast grr = Toast.makeText(getApplicationContext(),String.valueOf(kuga) + " " + hihi, Toast.LENGTH_LONG);
+		//grr.show();
 
         //separated[1]; 
+		}
 		
 		
 		
@@ -121,8 +142,8 @@ public class graph_Setup_2 extends Activity {
 	}
 	//Toast test = Toast.makeText(getApplicationContext(), , Toast.LENGTH_LONG);
 	
-	//Intent intent = new Intent(graph_Setup_2.this, Graphs.class);
-	//startActivity(intent);
+	Intent intent = new Intent(graph_Setup_2.this, Graphs.class);
+	startActivity(intent);
 	}
 	
 }
