@@ -4,8 +4,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-<<<<<<< HEAD
-=======
+
 import com.bs.vp.R;
 //import com.pxr.tutorial.xmltest.Main;
 //import com.pxr.tutorial.xmltest.XMLParser;
@@ -15,7 +14,7 @@ import com.bs.vp.XMLParser;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
->>>>>>> 0e21050b477ac77987aafa65549f11ef34f180db
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -93,7 +92,7 @@ public class MainActivity extends Activity {
 	        return true;
 	        
 		case (R.id.item2):
-			Intent intent = new Intent(MainActivity.this, Graphs.class);
+			Intent intent = new Intent(MainActivity.this, graph_Setup.class);
 			startActivity(intent);
 			return true;
 

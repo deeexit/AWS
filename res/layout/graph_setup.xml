@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/checkBox3"
-        android:text="@string/Rgprah" />
+        android:text="@string/Rgraph" />
 
     <CheckBox
         android:id="@+id/checkBox5"

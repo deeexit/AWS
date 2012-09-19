@@ -1,7 +1,7 @@
 package com.bs.vp;
 
 import android.app.Activity;
-<<<<<<< HEAD
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,26 +17,17 @@ import com.jjoe64.graphview.GraphViewSeries.GraphViewStyle;
 import com.jjoe64.graphview.LineGraphView;
 //import bs.bami.control.R;
 
+
+    
+	
+	
+
+
+
+
 public class Graphs extends Activity {
     
 	public graph_Setup_2 graphx;
-	
-=======
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphView.GraphViewSeries;
-import com.jjoe64.graphview.LineGraphView;
-import com.jjoe64.graphview.GraphView.GraphViewData;
-import com.jjoe64.graphview.GraphView.GraphViewStyle;
-
-public class Graphs extends Activity {
-    
->>>>>>> 0e21050b477ac77987aafa65549f11ef34f180db
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.graph_view);

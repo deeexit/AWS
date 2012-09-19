@@ -5,5 +5,9 @@
     <string name="title_activity_main">Vremenska Postaja</string>
     <string name="refresh">Osveži podatke</string>
     <string name="graphs">Grafi</string>
+    <string name="Tgraph">T</string>
+    <string name="Rhgraph">Rh</string>
+    <string name="Pgraph">P</string>
+    <string name="Rgraph">Rain</string>
 
 </resources>

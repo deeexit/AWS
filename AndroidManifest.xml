@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreen"
             android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,20 @@
             </intent-filter>
         </activity>
         <activity
-        android:name=".Graphs">
+            android:name=".MainActivity">
+        </activity>
+        <activity
+            android:name=".graph_Setup"
+            android:screenOrientation="landscape">
+            
+        </activity>
+        <activity
+            android:name=".graph_Setup_2"
+            android:screenOrientation="landscape">
+        </activity>
+        <activity
+        android:name=".Graphs"
+        android:screenOrientation="landscape">
 		</activity>
     </application>
 
