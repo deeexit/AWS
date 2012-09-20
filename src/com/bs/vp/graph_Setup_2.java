@@ -4,7 +4,9 @@ package com.bs.vp;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -17,13 +19,21 @@ import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.bs.vp.Graphs;
+
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.LineGraphView;
+import com.jjoe64.graphview.GraphView.GraphViewData;
 
 public class graph_Setup_2 extends Activity {
 	
@@ -35,7 +45,8 @@ public class graph_Setup_2 extends Activity {
 	public ArrayAdapter arr1;
 	public String[] datax = null;
 	public String[] datay = null;
-	
+	public GraphViewData[] data;
+	public GraphView graphView;
 	
 	public void onCreate (Bundle savedinstance) {
 		super.onCreate(savedinstance);
@@ -43,7 +54,37 @@ public class graph_Setup_2 extends Activity {
 	}
 	
 	
-	public void getData(View view) {
+	
+	private class DownloadGraphData extends AsyncTask <String, Void, String> {
+
+		protected String doInBackground(String... params) {
+			// TODO Auto-generated method stub
+			String response = "";
+			
+			getData();
+			
+			
+			return response;
+		}
+
+	    protected void onPostExecute (String response) {
+	    	
+	    	
+	           setContentView (R.layout.graph_view);
+	           graphView.addSeries(new GraphViewSeries(data));// data
+	     
+	           graphView.setViewPort(50, 100);
+	           graphView.setScalable(true);
+	           graphView.setScrollable(true);
+	           LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
+	           layout.addView(graphView);
+	    }
+		
+	}
+	
+	
+	
+	public void getData() {
 		//ArrayAdapter<String> arr1 = new ArrayAdapter<String> (this,android.R.layout.simple_list_item_1);
 	//Toast wtf = Toast.makeText(getApplicationContext(), "WTF!!!", Toast.LENGTH_LONG);
 	//wtf.show();
@@ -91,6 +132,7 @@ public class graph_Setup_2 extends Activity {
 		
 		//String[] mString = (String[]) strings.toArray(new String[strings.size()]);
 		
+	
 		String[] separated =  result.split("\n");
 		
 		
@@ -108,27 +150,50 @@ public class graph_Setup_2 extends Activity {
 		// Create graph
 		
 		
-		
+		//GraphViewData[] data = new GraphViewData[kuga-1];
+	    data = new GraphViewData[kuga-1]; 
 		for (int x = 1; x < kuga; x++) {
 			test = separated[x].split("\\|");
 			//Toast mhm = Toast.makeText(getApplicationContext(), String.valueOf(test.length), Toast.LENGTH_LONG);
 			//mhm.show();
 			hihi.append(test[0] + " -- " + test[1]+ " ");
-			arr1.add(test[0]);
-			arr1.add(test[1]);
-			//datax[x] = test[0];
-			//datay[x] = test[1];
-	//	  graph2 = new GraphViewSeries (new GraphViewData [] {
-	//		new GraphViewData (Integer.parseInt(separated[0]),Integer.parseInt(separated[1])),
-	//		new GraphViewData (Integer.parseInt(separated[2]),Integer.parseInt(separated[3])),
-	//		new GraphViewData (Integer.parseInt(separated[4]), Integer.parseInt(separated[5]))
-	//	});
-		//Toast grr = Toast.makeText(getApplicationContext(),String.valueOf(kuga) + " " + hihi, Toast.LENGTH_LONG);
-		//grr.show();
-
-        //separated[1]; 
+			//Toast mamamia = Toast.makeText(getApplicationContext(), test[0] + " " + test[1],Toast.LENGTH_LONG );
+			//mamamia.show();
+					double value1 = Double.parseDouble(test[0]);
+					double value2 = Double.parseDouble(test[1]);
+					
+					data[x-1] = new GraphViewData(value1, value2);
+			
+			
+			
 		}
+		//int num = 160;
+        
+        //double v=0;
+        //for (int x = 0; x<160; x++) {
+        //	v += 0.2;
+        //	data[x] = new GraphViewData(x, Math.sin(v));
+        	//data[x] = new GraphViewData(Integer.getInteger(jao.arr1.getItem(x).toString()),Integer.getInteger(jao.arr1.getItem(x).toString()));
+        //}
 		
+		final java.text.DateFormat dateTimeFormatter = DateFormat.getTimeFormat(getApplicationContext());
+		
+		graphView = new LineGraphView(getApplicationContext(), "Testni grafek") {
+		@Override
+		protected String formatLabel (double value, boolean isValueX) {
+			if (isValueX) {
+				return dateTimeFormatter.format(new Date((long) value * 1000));
+				//return dateTimeFormatter.format(new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date((long) (value * 1000))));
+			} else {
+				return super.formatLabel(value, isValueX);
+			}
+			
+			}
+		};
+		
+		
+		// graphView = new LineGraphView(this , "GraphViewDemo");
+        
 		
 		
 //		HttpResponse response = client.execute(post);
@@ -142,8 +207,13 @@ public class graph_Setup_2 extends Activity {
 	}
 	//Toast test = Toast.makeText(getApplicationContext(), , Toast.LENGTH_LONG);
 	
-	Intent intent = new Intent(graph_Setup_2.this, Graphs.class);
-	startActivity(intent);
+	//Intent intent = new Intent(graph_Setup_2.this, Graphs.class);
+	//startActivity(intent);
+	}
+	
+	public void runTask(View view) {
+		
+		new DownloadGraphData().execute(new String[] { "WTF!!"});
 	}
 	
 }

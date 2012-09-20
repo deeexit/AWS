@@ -53,10 +53,10 @@ public class Graphs extends Activity {
         GraphViewData[] data = new GraphViewData[num];
        
         double v=0;
-        for (int x = 1; x<5; x++) {
+        for (int x = 0; x<160; x++) {
         	v += 0.2;
-        	//data[x] = new GraphViewData(x, Math.sin(v));
-        	data[x] = new GraphViewData(Integer.getInteger(jao.arr1.getItem(x).toString()),Integer.getInteger(jao.arr1.getItem(x).toString()));
+        	data[x] = new GraphViewData(x, Math.sin(v));
+        	//data[x] = new GraphViewData(Integer.getInteger(jao.arr1.getItem(x).toString()),Integer.getInteger(jao.arr1.getItem(x).toString()));
         }
     
         
@@ -65,7 +65,7 @@ public class Graphs extends Activity {
               , "GraphViewDemo" // heading
         );
         graphView.addSeries(new GraphViewSeries(data)); // data
-        graphView.setViewPort(2, 40);
+        graphView.setViewPort(2, 2);
         graphView.setScalable(true);
         graphView.setScrollable(true);
         LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
@@ -73,14 +73,7 @@ public class Graphs extends Activity {
      
        
         
-        // test 2 
-        GraphViewSeries graph2 = new GraphViewSeries(new GraphViewData[] {
-        						 new GraphViewData (1,1),
-        						 new GraphViewData (2,2),
-        						 new GraphViewData (3,3),
-        						 new GraphViewData (4,10),
-        						 new GraphViewData (5,25)
-        });
+       
     	
       
         

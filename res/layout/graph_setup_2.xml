@@ -24,7 +24,7 @@
         android:layout_alignBottom="@+id/datePicker2"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"
-        android:onClick="getData"
+        android:onClick="runTask"
         android:text="Nariši" />
 
     <TextView
