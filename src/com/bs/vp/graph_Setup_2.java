@@ -18,10 +18,13 @@ import org.apache.http.util.EntityUtils;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -32,6 +35,7 @@ import com.bs.vp.Graphs;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphViewSeries;
+import com.jjoe64.graphview.GraphViewSeries.GraphViewStyle;
 import com.jjoe64.graphview.LineGraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
 
@@ -47,6 +51,8 @@ public class graph_Setup_2 extends Activity {
 	public String[] datay = null;
 	public GraphViewData[] data;
 	public GraphView graphView;
+	private ProgressDialog dprogress;
+	
 	
 	public void onCreate (Bundle savedinstance) {
 		super.onCreate(savedinstance);
@@ -71,13 +77,14 @@ public class graph_Setup_2 extends Activity {
 	    	
 	    	
 	           setContentView (R.layout.graph_view);
-	           graphView.addSeries(new GraphViewSeries(data));// data
-	     
-	           graphView.setViewPort(50, 100);
+	           graphView.addSeries(new GraphViewSeries("Temperatura",new GraphViewStyle(Color.rgb(255, 0, 0), 3),data));// data
+	           graphView.setShowLegend(true);
+	           graphView.setViewPort(1, data.length);
 	           graphView.setScalable(true);
 	           graphView.setScrollable(true);
 	           LinearLayout layout = (LinearLayout) findViewById(R.id.graph1);
 	           layout.addView(graphView);
+	           dprogress.dismiss();
 	    }
 		
 	}
@@ -115,10 +122,18 @@ public class graph_Setup_2 extends Activity {
 	
 	
 	// HTTP stuff
+	//month = month + 1;
+	//month2 = month2 + 1;
+	String mesec = month.toString();
+	String mesec2 = month2.toString();
 	
+	
+	if (month < 10) { mesec = "0" + month.toString(); }
+	if (month2 < 10) {  mesec2 = "0" + month2.toString(); }
 	HttpClient client = new DefaultHttpClient();
 	//HttpPost post = new HttpPost("http://bajta.kicks-ass.net/test.pl?date1="+ day.toString() + month.toString() + year.toString());
-	HttpGet get = new HttpGet("http://bajta.kicks-ass.net/test.pl?date1="+ day.toString() + month.toString() + year.toString());
+	HttpGet get = new HttpGet("http://bajta.kicks-ass.net/test.pl?date1="+ day.toString() + "-" +  mesec + "-" + year.toString() + 
+			"&date2="+day2.toString() + "-" + mesec2 + "-" + year2.toString());
 	
 	try {
 		ByteArrayOutputStream outstream = new ByteArrayOutputStream();
@@ -161,6 +176,8 @@ public class graph_Setup_2 extends Activity {
 			//mamamia.show();
 					double value1 = Double.parseDouble(test[0]);
 					double value2 = Double.parseDouble(test[1]);
+					
+					value2 = (value2 - 32) * 5 / 9;
 					
 					data[x-1] = new GraphViewData(value1, value2);
 			
@@ -213,7 +230,18 @@ public class graph_Setup_2 extends Activity {
 	
 	public void runTask(View view) {
 		
-		new DownloadGraphData().execute(new String[] { "WTF!!"});
+		dprogress = ProgressDialog.show(this, "VP Info", "Rišem...");
+		new Thread() {
+			
+		public void run() {
+			try {
+				new DownloadGraphData().execute(new String[] { "WTF!!"});
+			} catch (Exception e) {
+				Log.e("VP Info:", "Fail at get graph data... ");
+			}
+		 } 
+		}.start();
+		
 	}
 	
 }

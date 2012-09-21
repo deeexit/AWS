@@ -48,6 +48,8 @@ public class MainActivity extends Activity {
         //toast.show();
         
         // Define TextViews
+        ProgressBar spin11 = (ProgressBar) findViewById(R.id.progressBar1);
+		spin11.setVisibility(View.VISIBLE);   
         refreshData();
       
     }
